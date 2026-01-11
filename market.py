@@ -13,6 +13,30 @@ def about(username):
     <p>TradeHub is a Flask-based marketplace where users can buy and sell items.</p>
     """
 
+@app.route('/market')
+def market():
+    items = [
+        {
+            'id': 1,
+            'name': 'Headphone',
+            'price': 200,
+            'barcode': '35709847938424'
+        },
+        {
+            'id': 2,
+            'name': 'Laptop',
+            'price': 1500,
+            'barcode': '26604980037453'
+        },
+        {
+            'id': 3,
+            'name': 'Keyboard',
+            'price': 350,
+            'barcode': '55004283040892'
+        }
+    ]
+    
+    return render_template('market.html', items=items)
 
 
 
