@@ -59,6 +59,44 @@
     </nav>
 
     <h1>This is the Market page!</h1>
+    <div class="container mt-5">
+        <div class="market-card">
+
+            <div class="market-header">
+                Market Items
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-dark table-hover market-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Barcode</th>
+                            <th>Price</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <th>{{ item['id'] }}</th>
+                                <td>{{ item['name'] }}</td>
+                                <td>{{ item['barcode'] }}</td>
+                                <td>{{ item['price'] }}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-buy btn-sm">Buy</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>

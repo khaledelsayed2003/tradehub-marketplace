@@ -80,7 +80,7 @@ h1, h2, h3, h4 {
     color: #38bdf8;
 }
 
-/* BUTTONS */
+/* BUTTONS Login & Register*/
 .btn-primary {
     background: linear-gradient(135deg, #22c55e, #16a34a);
     border: none;
@@ -124,5 +124,52 @@ h1 {
 /* links */
 a {
     text-decoration: none;
+}
+
+
+/* Card container for items table*/
+.market-card {
+    background: #0b1220;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    backdrop-filter: blur(6px);
+}
+
+/* Header */
+.market-header {
+    background: linear-gradient(90deg,#00c6ff,#00ffa3);
+    color: #001018;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
+
+/* Table */
+.market-table thead {
+    background: rgba(0,255,170,0.08);
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+/* Hover effect */
+.market-table tbody tr:hover {
+    background: rgba(0,255,170,0.08);
+    transition: 0.2s;
+}
+
+/* Buy button */
+.btn-buy {
+    border: 1px solid #00ffa3;
+    color: #00ffa3;
+    background: transparent;
+    transition: 0.2s;
+}
+
+.btn-buy:hover {
+    background: #00ffa3;
+    color: #001018;
+    box-shadow: 0 0 10px #00ffa3;
 }
 
