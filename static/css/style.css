@@ -159,6 +159,25 @@ a {
     transition: 0.2s;
 }
 
+/* More Info outline button */
+.btn-info-outline {
+    background: transparent;
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+/* hover */
+.btn-info-outline:hover {
+    background: #38bdf8;
+    color: #020617;
+    box-shadow: 0 0 8px rgba(56,189,248,0.6);
+    transform: translateY(-1px);
+}
+
 /* Buy button */
 .btn-buy {
     border: 1px solid #00ffa3;
@@ -172,4 +191,14 @@ a {
     color: #001018;
     box-shadow: 0 0 10px #00ffa3;
 }
+
+/* Actions column — small controlled space */
+.market-table th:last-child,
+.market-table td:last-child {
+    width: 120px;          /* controls column size */
+    white-space: nowrap;
+    text-align: center;
+    padding-right: 16px;   /* little breathing space on right */
+}
+
 

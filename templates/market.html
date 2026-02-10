@@ -74,7 +74,7 @@
                             <th>Name</th>
                             <th>Barcode</th>
                             <th>Price</th>
-                            <th class="text-center">Action</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
 
@@ -86,7 +86,8 @@
                                 <td>{{ item.barcode }}</td>
                                 <td>{{ item.price }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-buy btn-sm">Buy</button>
+                                    <button class="btn btn-info-outline btn-sm">View Details</button>
+                                    <button class="btn btn-buy btn-sm">Purchase</button>
                                 </td>
                             </tr>
                         {% endfor %}
