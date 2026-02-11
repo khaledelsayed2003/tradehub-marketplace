@@ -1,6 +1,24 @@
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
+import os
+
+load_dotenv("config/.env")
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+db = SQLAlchemy(app)
+
+
+# --- Models ---
+class Item(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(length=50), nullable=False, unique=True)
+    barcode = db.Column(db.String(length=12), nullable=False, unique=True)
+    price = db.Column(db.Integer(), nullable=False)
+    description= db.Column(db.String(length=1024), nullable=False)
+    
+    
 
 @app.route("/")
 @app.route("/home")

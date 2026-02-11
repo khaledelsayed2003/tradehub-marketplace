@@ -8,5 +8,6 @@ __pycache__/
 # Environment variables
 config/.env
 
-# Database
+# Flask / SQLite
+instance/
 *.db
