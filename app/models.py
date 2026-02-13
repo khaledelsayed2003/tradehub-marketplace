@@ -7,6 +7,7 @@ class User(db.Model):
     email_address = db.Column(db.String(length=100), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     budget = db.Column(db.Integer(), nullable=False, default=1000)
+    items = db.relationship('Item', backref='owned_user', lazy=True)
     
 class Item(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -14,3 +15,4 @@ class Item(db.Model):
     barcode = db.Column(db.String(length=12), nullable=False, unique=True)
     price = db.Column(db.Integer(), nullable=False)
     description= db.Column(db.String(length=1024), nullable=False)
+    owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
