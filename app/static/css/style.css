@@ -202,3 +202,44 @@ a {
 }
 
 
+/* Center the card */
+.register-wrapper {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card style */
+.register-card {
+    width: 420px;
+    padding: 40px;
+    border-radius: 18px;
+    background: #0b132b;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+/* Inputs */
+.form-control {
+    background-color: #1c2541;
+    border: none;
+    color: white;
+}
+
+.form-control:focus {
+    background-color: #1c2541;
+    color: white;
+    box-shadow: 0 0 10px #2ec4b6;
+}
+
+/* Button */
+.btn-success {
+    background: #2ec4b6;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-success:hover {
+    background: #26a69a;
+}
