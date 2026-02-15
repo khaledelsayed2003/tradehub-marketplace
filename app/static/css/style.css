@@ -233,6 +233,11 @@ a {
     box-shadow: 0 0 10px #2ec4b6;
 }
 
+.form-control::placeholder {
+    color: #9fb3ff;
+    opacity: 0.8;
+}
+
 /* Button */
 .btn-success {
     background: #2ec4b6;
