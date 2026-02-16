@@ -1,5 +1,5 @@
 from app import app, db
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from app.models import Item, User
 from app.forms import RegisterForm
 
@@ -20,9 +20,12 @@ def register_page():
         created_user = User(username=form.username.data, email_address=form.email_address.data, password_hash=form.password.data)
         db.session.add(created_user)
         db.session.commit()
+        
+        flash("Account created successfully 🎉", "success")
         return redirect(url_for('market_page'))
+    
     if form.errors != {}:
-        for error_msg in form.errors.values():
-            print(f'Form validation failed:{error_msg}')
+        for field, error_msg in form.errors.items():
+            flash(f"{field.replace('_',' ').title()}: {error_msg}", "danger")
             
     return render_template('register.html', form=form)

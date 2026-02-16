@@ -248,3 +248,61 @@ a {
 .btn-success:hover {
     background: #26a69a;
 }
+
+/* wrapper */
+.flash-wrapper {
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 420px;
+    z-index: 9999;
+}
+
+/* alert */
+.flash-alert {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+
+    /* animation WITHOUT horizontal movement */
+    animation: fadeSlide 0.35s ease;
+}
+
+/* success */
+.alert-success {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    box-shadow: 0 0 15px rgba(34,197,94,0.45);
+}
+
+/* error */
+.alert-danger {
+    background: linear-gradient(135deg, #ff4d6d, #c9184a);
+    box-shadow: 0 0 12px rgba(255,77,109,0.4);
+}
+
+.flash-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* FIXED animation */
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
