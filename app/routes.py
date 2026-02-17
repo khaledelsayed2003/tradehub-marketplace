@@ -29,3 +29,8 @@ def register_page():
             flash(f"{field.replace('_',' ').title()}: {error_msg}", "danger")
             
     return render_template('register.html', form=form)
+
+@app.route("/login", methods=['GET', 'POST'])
+def login_page():
+    return render_template('login.html')
+    
