@@ -81,18 +81,28 @@ h1, h2, h3, h4 {
 }
 
 /* BUTTONS Login & Register*/
+/* Default button(Register) */
 .btn-primary {
     background: linear-gradient(135deg, #22c55e, #16a34a);
     border: none;
     font-weight: 600;
     padding: 6px 16px;
     border-radius: 8px;
+    transition: all 0.3s ease;
 }
-
+/* Hover */
 .btn-primary:hover {
     background: linear-gradient(135deg, #16a34a, #15803d);
 }
+/* ACTIVE PAGE BUTTON(Register) */
+.btn-primary.active-btn {
+    background: linear-gradient(135deg, #f59e0b, #f97316) !important;
+    color: white !important;
+    box-shadow: 0 0 12px rgba(249,115,22,0.8);
+    transform: scale(1.05);
+}
 
+/* Login */
 .btn-outline-primary {
     border-color: #38bdf8;
     color: #38bdf8;
