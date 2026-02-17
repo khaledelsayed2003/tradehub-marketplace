@@ -229,7 +229,15 @@ a {
     border-radius: 18px;
     background: #0b132b;
     color: white;
-    backdrop-filter: blur(10px);
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* form takes available space */
+.register-card form,
+.login-card form {
+    flex: 1;
 }
 
 /* INPUTS (shared globally) */
@@ -270,6 +278,14 @@ a {
 
 .login-card .btn-primary:hover {
     background: linear-gradient(135deg, #2563eb, #1e40af);
+}
+
+/* bottom text aligned to card border */
+.auth-switch-text {
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 0;
+    font-size: 0.9rem;
 }
 
 
