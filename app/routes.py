@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, redirect, url_for, flash
 from app.models import Item, User
-from app.forms import RegisterForm
+from app.forms import RegisterForm, LoginForm
 
 @app.route("/")
 @app.route("/home")
@@ -32,5 +32,6 @@ def register_page():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login_page():
-    return render_template('login.html')
+    form = LoginForm()
+    return render_template('login.html', form=form)
     
