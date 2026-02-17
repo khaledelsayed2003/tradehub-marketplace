@@ -212,16 +212,18 @@ a {
 }
 
 
-/* Center the card */
-.register-wrapper {
+/* CENTER BOTH PAGES */
+.register-wrapper,
+.login-wrapper {
     min-height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Card style */
-.register-card {
+/* CARD STYLE (shared) */
+.register-card,
+.login-card {
     width: 420px;
     padding: 40px;
     border-radius: 18px;
@@ -230,7 +232,7 @@ a {
     backdrop-filter: blur(10px);
 }
 
-/* Inputs */
+/* INPUTS (shared globally) */
 .form-control {
     background-color: #1c2541;
     border: none;
@@ -248,16 +250,28 @@ a {
     opacity: 0.8;
 }
 
-/* Button */
-.btn-success {
+/* REGISTER BUTTON */
+.register-card .btn-success {
     background: #2ec4b6;
     border: none;
     font-weight: bold;
 }
 
-.btn-success:hover {
+.register-card .btn-success:hover {
     background: #26a69a;
 }
+
+/* LOGIN BUTTON (different color) */
+.login-card .btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border: none;
+    font-weight: bold;
+}
+
+.login-card .btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+}
+
 
 /* wrapper */
 .flash-wrapper {
