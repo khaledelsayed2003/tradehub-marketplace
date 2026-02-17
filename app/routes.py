@@ -1,7 +1,8 @@
-from app import app, db
+from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash
 from app.models import Item, User
 from app.forms import RegisterForm, LoginForm
+from flask_login import login_user
 
 @app.route("/")
 @app.route("/home")
@@ -21,17 +22,26 @@ def register_page():
         db.session.add(created_user)
         db.session.commit()
         
-        flash("Account created successfully 🎉", "success")
+        flash("Account created successfully 🎉", category="success")
         return redirect(url_for('market_page'))
     
     if form.errors != {}:
         for field, error_msg in form.errors.items():
-            flash(f"{field.replace('_',' ').title()}: {error_msg}", "danger")
+            flash(f"{field.replace('_',' ').title()}: {error_msg}", category="danger")
             
     return render_template('register.html', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login_page():
     form = LoginForm()
+    if form.validate_on_submit():
+        authenticated_user = User.query.filter_by(username=form.username.data).first()
+        if authenticated_user and authenticated_user.check_password_of_authenticated_user(authenticated_password=form.password.data):
+            login_user(authenticated_user)
+            flash(f"Welcome back {authenticated_user.username}! You logged in successfully ✨", category="success")
+            return redirect(url_for('market_page'))
+        else:
+            flash("Login failed ❌ — Incorrect username or password. Please try again.", category="danger")
+            
     return render_template('login.html', form=form)
     
