@@ -41,7 +41,7 @@ def login_page():
             flash(f"Welcome back {authenticated_user.username}! You logged in successfully ✨", category="success")
             return redirect(url_for('market_page'))
         else:
-            flash("Login failed ❌ — Incorrect username or password. Please try again.", category="danger")
+            flash("Oops! 😕 The username or password you entered is incorrect.", "danger")
             
     return render_template('login.html', form=form)
     
