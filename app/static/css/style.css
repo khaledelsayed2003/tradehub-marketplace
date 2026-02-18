@@ -61,6 +61,83 @@ h1, h2, h3, h4 {
     font-weight: 600;
 }
 
+/* AUTHENTICATED NAVBAR UI*/
+/* welcome text */
+.nav-welcome {
+    color: #cbd5e1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* username gradient */
+.nav-username {
+    background: linear-gradient(90deg,#38bdf8,#22c55e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+/* budget pill */
+.nav-budget {
+    background: rgba(34,197,94,0.12);
+    color: #22c55e;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid rgba(34,197,94,0.35);
+    transition: 0.25s;
+}
+
+.nav-budget:hover {
+    background: rgba(34,197,94,0.2);
+    box-shadow: 0 0 8px rgba(34,197,94,0.5);
+}
+
+/*LOGOUT BUTTON*/
+.nav-logout-btn {
+    position: relative;
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+
+    background: linear-gradient(135deg,#ef4444,#f97316);
+    box-shadow: 0 0 12px rgba(239,68,68,0.5);
+    transition: 0.3s ease;
+}
+
+/* glow border */
+.nav-logout-btn::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 999px;
+    background: linear-gradient(135deg,#ef4444,#f97316,#fb7185);
+    z-index: -1;
+    filter: blur(6px);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* hover */
+.nav-logout-btn:hover {
+    transform: translateY(-1px) scale(1.05);
+    box-shadow: 0 0 18px rgba(239,68,68,0.8);
+}
+
+.nav-logout-btn:hover::before {
+    opacity: 1;
+}
+
+/* click */
+.nav-logout-btn:active {
+    transform: scale(0.96);
+}
+
 /* DROPDOWN */
 .dropdown-menu {
     background: #020617;
