@@ -52,10 +52,31 @@
                         </ul>
                     </li>
                 </ul>
+                {% if current_user.is_authenticated %}
+                    <div class="d-flex align-items-center gap-3">
+
+                        <!-- Welcome text -->
+                        <span class="nav-welcome">
+                            Welcome, <span class="nav-username">{{ current_user.username }}</span>
+                        </span>
+
+                        <!-- Budget pill -->
+                        <span class="nav-budget">
+                            ${{ current_user.budget }}
+                        </span>
+
+                        <!-- Logout button -->
+                        <a href="#" class="nav-logout-btn">
+                            Logout
+                        </a>
+
+                    </div>          
+                {% else %}
                 <div class="d-flex">
                     <a href="{{ url_for('login_page') }}" class="btn btn-outline-primary me-2 {% if request.endpoint == 'login_page' %}active{% endif %}">Login</a>
                     <a href="{{ url_for('register_page') }}" class="btn btn-primary {% if request.endpoint == 'register_page' %}active-btn{% endif %}">Register</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </nav>
