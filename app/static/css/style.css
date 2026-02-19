@@ -404,6 +404,12 @@ a {
     box-shadow: 0 0 12px rgba(255,77,109,0.4);
 }
 
+/* info */
+.alert-info {
+    background: linear-gradient(135deg, #2ec4b6, #1b9aaa);
+    box-shadow: 0 0 12px rgba(46,196,182,0.4);
+}
+
 .flash-close {
     background: none;
     border: none;
