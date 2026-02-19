@@ -410,6 +410,13 @@ a {
     box-shadow: 0 0 12px rgba(46,196,182,0.4);
 }
 
+/* warning */
+.alert-warning {
+    background: linear-gradient(135deg, #facc15, #f59e0b);
+    box-shadow: 0 0 15px rgba(250,204,21,0.45);
+    color: #1f2937; /* darker text for readability */
+}
+
 .flash-close {
     background: none;
     border: none;
