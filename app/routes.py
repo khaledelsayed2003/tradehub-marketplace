@@ -1,8 +1,8 @@
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash
-from app.models import Item, User
+from app.models import Item, User, load_user
 from app.forms import RegisterForm, LoginForm
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 @app.route("/")
 @app.route("/home")
@@ -44,4 +44,10 @@ def login_page():
             flash("Oops! 😕 The username or password you entered is incorrect.", "danger")
             
     return render_template('login.html', form=form)
+
+@app.route("/logout")
+def logout_page():
+    logout_user()
+    flash("Logged out successfully! Come back anytime 🚀", "info")
+    return redirect(url_for('home_page'))
     
