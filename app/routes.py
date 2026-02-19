@@ -2,7 +2,7 @@ from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash
 from app.models import Item, User, load_user
 from app.forms import RegisterForm, LoginForm
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, login_required
 
 @app.route("/")
 @app.route("/home")
@@ -10,13 +10,10 @@ def home_page():
     return render_template('home.html')
 
 @app.route("/market")
+@login_required
 def market_page():
-    if not current_user.is_authenticated:
-        flash("You must be logged in to access the market 📊", "warning")
-        return redirect(url_for("login_page"))
-    else:
-        items = Item.query.all()
-        return render_template('market.html', items=items)
+    items = Item.query.all()
+    return render_template('market.html', items=items)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register_page():
@@ -26,7 +23,8 @@ def register_page():
         db.session.add(created_user)
         db.session.commit()
         
-        flash("Account created successfully 🎉", category="success")
+        login_user(created_user)
+        flash(f"{created_user.username}, your account has been created and you're now logged in 🎉", "success")
         return redirect(url_for('market_page'))
     
     if form.errors != {}:

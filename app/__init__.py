@@ -14,4 +14,11 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
+# where to send users if not logged in
+login_manager.login_view = "login_page"
+
+# flash message when not logged in
+login_manager.login_message = "You must be logged in to access the market 📊"
+login_manager.login_message_category = "warning"
+
 from app import routes
