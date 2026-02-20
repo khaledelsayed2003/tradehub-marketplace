@@ -1,0 +1,106 @@
+<!-- ITEM DETAILS MODAL -->
+<div class="modal fade custom-modal" id="Modal-MoreInfo-{{ item.id }}" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+
+    <div class="modal-content trade-modal">
+
+      <!-- HEADER -->
+      <div class="modal-header trade-modal-header">
+        <h4 class="modal-title">
+          📦 {{ item.name }}
+        </h4>
+
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body trade-modal-body">
+
+        <div class="item-stats">
+
+          <div class="stat">
+            <span>ID</span>
+            <strong>{{ item.id }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>Barcode</span>
+            <strong>{{ item.barcode }}</strong>
+          </div>
+
+          <div class="stat">
+            <span>Price</span>
+            <strong class="price">${{ item.price }}</strong>
+          </div>
+
+        </div>
+
+        <div class="item-description">
+            {{ item.description }}
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer trade-modal-footer">
+
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+
+        <button class="btn btn-buy">
+          Buy Now
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- PURCHASE MODAL -->
+<div class="modal fade custom-modal" id="Modal-Purchase-{{ item.id }}" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content trade-modal">
+
+      <div class="modal-header trade-modal-header">
+        <h4 class="modal-title">
+          Confirm Purchase
+        </h4>
+
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body trade-modal-body text-center">
+
+        <p class="mb-3">
+          Are you sure you want to buy
+        </p>
+
+        <h3 class="purchase-item">
+          {{ item.name }}
+        </h3>
+
+        <div class="price big-price">
+          ${{ item.price }}
+        </div>
+
+      </div>
+
+      <div class="modal-footer trade-modal-footer">
+
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+
+        <button class="btn btn-buy">
+          Confirm Purchase
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
