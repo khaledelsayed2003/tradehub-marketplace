@@ -31,14 +31,15 @@
 
                             <tbody>
                                 {% for item in items %}
+                                    {% include 'includes/items_modals.html' %}
                                     <tr>
                                         <td>{{ item.id }}</td>
                                         <td>{{ item.name }}</td>
                                         <td>{{ item.barcode }}</td>
                                         <td class="price">${{ item.price }}</td>
                                         <td class="text-center">
-                                            <button class="btn-view btn-sm">View Details</button>
-                                            <button class="btn-buy btn-sm">Purchase</button>
+                                            <button class="btn-view btn-sm" data-bs-toggle="modal" data-bs-target="#Modal-MoreInfo-{{ item.id }}">View Details</button>
+                                            <button class="btn-buy btn-sm" data-bs-toggle="modal" data-bs-target="#Modal-Purchase-{{ item.id }}">Purchase</button>
                                         </td>
                                     </tr>
                                 {% endfor %}
