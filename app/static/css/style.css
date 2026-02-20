@@ -829,3 +829,108 @@ body::before {
     font-size: 15px;
 }
 
+
+/* MODAL DESIGN */
+/* ITEM DETAILS MODAL*/
+.trade-modal {
+    position: relative;
+    background: linear-gradient(145deg,#0f172a,#020617);
+    border-radius: 18px;
+    border: 1px solid rgba(125, 154, 158, 0.904);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    backdrop-filter: blur(18px);
+    color: #e5e7eb;
+}
+
+/* Header */
+.trade-modal-header {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 18px 24px;
+}
+
+.trade-modal-header h4 {
+    font-weight: 700;
+    font-size: 22px;
+    background: linear-gradient(90deg,#38bdf8,#22c55e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Close icon */
+.trade-modal-header .btn-close {
+    filter: invert(1);
+    opacity: 0.7;
+}
+
+.trade-modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+/* Body */
+.trade-modal-body {
+    padding: 30px;
+}
+
+/* Item stats */
+.item-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: rgba(255,255,255,0.05);
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    flex: 1;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.stat span {
+    display: block;
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.stat strong {
+    font-size: 18px;
+    color: #e5e7eb;
+}
+
+/* Price highlight */
+.price strong {
+    color: #22c55e;
+    font-size: 20px;
+}
+
+/* Description */
+.item-description {
+    text-align: center;
+    color: #cbd5f5;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+
+/* Purchase modal */
+.purchase-item {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #e5e7eb;
+}
+
+.big-price {
+    font-size: 34px;
+    font-weight: 800;
+    color: #22c55e;
+}
+
+/* Footer */
+.trade-modal-footer {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 18px 24px;
+}
