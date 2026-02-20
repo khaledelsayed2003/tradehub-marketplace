@@ -5,41 +5,66 @@
 {% endblock %}
 
 {% block content %}
-    <h1>This is the Market page!</h1>
-    <div class="container mt-5">
-        <div class="market-card">
+    <div class="container-fluid mt-4 market-wrapper">
+        <div class="row justify-content-center">
 
-            <div class="market-header">
-                Market Items
+            <!-- Market Items -->
+            <div class="col-xl-8 col-lg-8 mb-4">
+                <div class="market-card">
+
+                    <div class="market-header">
+                        <span class="header-icon">📊</span>
+                        Market Items
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="market-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Barcode</th>
+                                    <th>Price</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in items %}
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.barcode }}</td>
+                                        <td class="price">${{ item.price }}</td>
+                                        <td class="text-center">
+                                            <button class="btn-view btn-sm">View Details</button>
+                                            <button class="btn-buy btn-sm">Purchase</button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
 
-            <div class="table-responsive">
-                <table class="table table-dark table-hover market-table mb-0">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Barcode</th>
-                            <th>Price</th>
-                            <th class="text-center">Actions</th>
-                        </tr>
-                    </thead>
+            <!-- Customer purchases  -->
+            <div class="col-xl-4 col-lg-4">
+                <div class="portfolio-card">
 
-                    <tbody>
-                        {% for item in items %}
-                            <tr>
-                                <th>{{ item.id }}</th>
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.barcode }}</td>
-                                <td>${{ item.price }}</td>
-                                <td class="text-center">
-                                    <button class="btn btn-info-outline btn-sm">View Details</button>
-                                    <button class="btn btn-buy btn-sm">Purchase</button>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                    <div class="portfolio-header">
+                        <span class="header-icon">🛒</span>
+                        Your Purchases
+                    </div>
+
+                    <div class="portfolio-body">
+                        <p class="empty-state">
+                            Your purchased items will appear here.
+                        </p>
+                    </div>
+
+                </div>
             </div>
 
         </div>
