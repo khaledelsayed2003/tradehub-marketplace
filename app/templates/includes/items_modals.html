@@ -50,6 +50,7 @@
 
         <form method="POST">
           {{ purchase_form.hidden_tag() }}
+          <input id="purchased_item" name="purchased_item" type="hidden" value="{{ item.name }}">
           {{ purchase_form.submit(class="btn btn-buy purchase", value="Buy Now") }}
         </form>
         
@@ -98,6 +99,7 @@
 
         <form method="POST">
           {{ purchase_form.hidden_tag() }}
+          <input id="purchased_item" name="purchased_item" type="hidden" value="{{ item.name }}">
           {{ purchase_form.submit(class="btn btn-buy purchase") }}
         </form>
 
