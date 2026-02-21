@@ -49,12 +49,10 @@
         </button>
 
         <form method="POST">
-
+          {{ purchase_form.hidden_tag() }}
+          {{ purchase_form.submit(class="btn btn-buy purchase", value="Buy Now") }}
         </form>
-        <button class="btn btn-buy">
-          Buy Now
-        </button>
-
+        
       </div>
 
     </div>
@@ -99,11 +97,9 @@
         </button>
 
         <form method="POST">
-
+          {{ purchase_form.hidden_tag() }}
+          {{ purchase_form.submit(class="btn btn-buy purchase") }}
         </form>
-        <button class="btn btn-buy">
-          Confirm Purchase
-        </button>
 
       </div>
 

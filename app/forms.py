@@ -29,8 +29,8 @@ class LoginForm(FlaskForm):
     
     
 class PurchaseItemForm(FlaskForm):
-    submit = SubmitField(label='Purchase Item!')
+    submit = SubmitField(label='Confirm Purchase')
     
     
 class SellItemForm(FlaskForm):
-    submit = SubmitField(label='Sell Item!') 
+    submit = SubmitField(label='Confirm Sale') 
