@@ -815,9 +815,65 @@ body::before {
 }
 
 .empty-state {
+    align-items: flex-start; 
+    padding-top: 57%;
     color: #94a3b8;
     text-align: center;
     font-size: 15px;
+    
+}
+
+/* Adding some unique properties */
+.portfolio-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-body {
+    align-items: flex-start;  /* override center when table exists */
+}
+
+/* Sell button */
+.sell-btn {
+    background: transparent;
+    border: 1px solid #f97316;
+    color: #f97316;
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sell-btn:hover {
+    background: #f97316;
+    color: #0f172a;
+    box-shadow: 0 0 12px rgba(249,115,22,0.6);
+    transform: scale(1.05);
+}
+
+/* Purchases table text smaller to fit card */
+.portfolio-card .market-table thead th {
+    font-size: 13px;
+    padding: 8px 12px;
+}
+
+.portfolio-card .market-table tbody tr td {
+    padding: 12px;
+    font-size: 14px;
+}
+
+/* item name bold */
+.item-name {
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+/* barcode muted */
+.item-barcode {
+    color: #64748b;
+    font-size: 13px;
 }
 
 
