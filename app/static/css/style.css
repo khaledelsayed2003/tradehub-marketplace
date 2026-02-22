@@ -985,3 +985,33 @@ body::before {
 .purchase{
     margin-left: -3px;
 }
+
+
+/* SELL MODAL CUSTOM */
+.sell-confirm-btn{
+    background: linear-gradient(135deg,#ef4444,#dc2626);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: .25s;
+}
+
+.sell-confirm-btn:hover{
+    transform: scale(1.1);;
+    box-shadow: 0 10px 20px rgba(239,68,68,.45);
+}
+
+/* small note text */
+.sell-note{
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 10px;
+}
+
+/* price when selling */
+.sell-modal .big-price{
+    color:#f87171;
+}
+
