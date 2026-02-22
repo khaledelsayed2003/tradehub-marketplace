@@ -60,9 +60,48 @@
                     </div>
 
                     <div class="portfolio-body">
-                        <p class="empty-state">
-                            Your purchased items will appear here.
-                        </p>
+
+                        {% if current_user.items %}
+                        <table class="market-table w-100">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Barcode</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in current_user.items %}
+                                <tr class="item-row">
+
+                                    <td class="item-name">{{ item.name }}</td>
+                                    <td class="item-barcode">{{ item.barcode }}</td>
+
+                                    <td class="price">
+                                        ${{ item.price }}
+                                    </td>
+
+                                    <td>
+                                        <button class="sell-btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#SellModal-{{ item.id }}">
+                                            Sell
+                                        </button>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                        {% else %}
+                            <p class="empty-state">
+                                Your purchased items will appear here.
+                            </p>
+                        {% endif %}
+
                     </div>
 
                 </div>
