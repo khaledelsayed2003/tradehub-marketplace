@@ -17,10 +17,13 @@ def market_page():
         purchased_item = request.form.get('purchased_item')
         purchased_item_obj = Item.query.filter_by(name=purchased_item).first()
         if purchased_item_obj:
-            purchased_item_obj.owner = current_user.id 
-            current_user.budget -= purchased_item_obj.price
-            db.session.commit()
-            flash(f'You successfully purchased {purchased_item_obj.name} for ${purchased_item_obj.price}!', category='success')
+            if current_user.can_afford(purchased_item_obj):
+                purchased_item_obj.owner = current_user.id 
+                current_user.budget -= purchased_item_obj.price
+                db.session.commit()
+                flash(f'You successfully purchased {purchased_item_obj.name} for ${purchased_item_obj.price}!', category='success')
+            else:
+                flash(f"Insufficient budget! {purchased_item_obj.name} costs ${purchased_item_obj.price} but you only have ${current_user.budget}.", category='danger')
         return redirect(url_for('market_page'))
     
     items = Item.query.filter_by(owner=None)

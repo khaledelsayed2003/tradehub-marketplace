@@ -24,6 +24,9 @@ class User(db.Model, UserMixin):
         
     def check_password_of_authenticated_user(self, authenticated_password):
         return bcrypt.check_password_hash(self.password_hash, authenticated_password)
+    
+    def can_afford(self, item_obj):
+        self.budget >= item_obj.price
         
         
 class Item(db.Model):
