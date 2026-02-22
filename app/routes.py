@@ -19,10 +19,12 @@ def market_page():
         if purchased_item_obj:
             purchased_item_obj.owner = current_user.id 
             current_user.budget -= purchased_item_obj.price
-        
-    if request.method == 'GET': 
-        items = Item.query.filter_by(owner=None)
-        return render_template('market.html', items=items, purchase_form=purchase_form)
+            db.session.commit()
+            flash(f'You successfully purchased {purchased_item_obj.name} for ${purchased_item_obj.price}!', category='success')
+        return redirect(url_for('market_page'))
+    
+    items = Item.query.filter_by(owner=None)
+    return render_template('market.html', items=items, purchase_form=purchase_form)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register_page():
