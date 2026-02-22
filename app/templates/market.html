@@ -74,6 +74,7 @@
 
                             <tbody>
                                 {% for item in current_user.items %}
+                                {% include 'includes/owned_items_modal.html' %}
                                 <tr class="item-row">
 
                                     <td class="item-name">{{ item.name }}</td>
@@ -86,7 +87,7 @@
                                     <td>
                                         <button class="sell-btn"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#SellModal-{{ item.id }}">
+                                        data-bs-target="#Modal-Sell-{{ item.id }}">
                                             Sell
                                         </button>
                                     </td>

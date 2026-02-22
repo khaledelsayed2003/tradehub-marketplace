@@ -1,0 +1,54 @@
+<!-- SELL ITEM MODAL -->
+<div class="modal fade custom-modal" id="Modal-Sell-{{ item.id }}" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content trade-modal">
+
+      <!-- HEADER -->
+      <div class="modal-header trade-modal-header">
+        <h4 class="modal-title">
+          Sell Item
+        </h4>
+
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body trade-modal-body text-center">
+
+        <p class="mb-3">
+          Are you sure you want to sell
+        </p>
+
+        <h3 class="purchase-item">
+          {{ item.name }}
+        </h3>
+
+        <div class="price big-price">
+          +${{ item.price }}
+        </div>
+
+        <p class="sell-note">
+          This item will be removed from your inventory.
+        </p>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer trade-modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+
+        <form method="POST">
+          {{ sell_form.hidden_tag() }}
+          <input id="sold_item" name="sold_item" type="hidden" value="{{ item.name }}">
+          {{ sell_form.submit(class="btn sell-confirm-btn") }}
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

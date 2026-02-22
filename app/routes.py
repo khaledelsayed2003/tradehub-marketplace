@@ -1,7 +1,7 @@
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request
 from app.models import Item, User, load_user
-from app.forms import RegisterForm, LoginForm, PurchaseItemForm
+from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
 from flask_login import login_user, logout_user, login_required, current_user
 
 @app.route("/")
@@ -13,6 +13,7 @@ def home_page():
 @login_required
 def market_page():
     purchase_form = PurchaseItemForm()
+    sell_form = SellItemForm()
     if request.method == 'POST':
         purchased_item = request.form.get('purchased_item')
         purchased_item_obj = Item.query.filter_by(name=purchased_item).first()
@@ -27,7 +28,7 @@ def market_page():
         return redirect(url_for('market_page'))
     
     items = Item.query.filter_by(owner=None)
-    return render_template('market.html', items=items, purchase_form=purchase_form)
+    return render_template('market.html', items=items, purchase_form=purchase_form, sell_form=sell_form)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register_page():
