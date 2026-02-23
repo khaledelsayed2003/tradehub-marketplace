@@ -82,6 +82,7 @@ def logout_page():
 @login_required
 def delete_account():
     user_to_delete = User.query.filter_by(username=current_user.username).first()
+    logout_user()
     db.session.delete(user_to_delete)
     db.session.commit()
     flash('💀 Your account has been permanently deleted. Goodbye!', category='danger')
