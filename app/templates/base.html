@@ -105,6 +105,38 @@
         {% endwith %}
     </div>
 
+    <!-- DELETE ACCOUNT MODAL -->
+    <div class="modal fade" id="DeleteAccountModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content trade-modal">
+
+                <div class="modal-header trade-modal-header">
+                    <h4 class="modal-title">⚠️ Delete Account</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body trade-modal-body text-center">
+                    <p style="color:#94a3b8; font-size:15px;">
+                        This action is <strong style="color:#ef4444;">permanent</strong> and cannot be undone.<br>
+                        All your items and data will be lost forever.
+                    </p>
+                    <div style="font-size: 48px; margin: 20px 0;">💀</div>
+                    <p style="color:#64748b; font-size:13px;">
+                        Are you absolutely sure you want to delete your account?
+                    </p>
+                </div>
+
+                <div class="modal-footer trade-modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="#" class="delete-confirm-btn">
+                        Yes, Delete My Account
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     {% block content %}{% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
