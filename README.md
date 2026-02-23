@@ -108,16 +108,6 @@ User sells item →  Item RELEASED back to market →  Anyone can buy it again
 
 ## 🖼 Screenshots
 
-> 📸 _Add your screenshots to a `/screenshots` folder and update paths below_
-
-| Home                          | Market                            | Modals                          |
-| ----------------------------- | --------------------------------- | ------------------------------- |
-| ![Home](screenshots/home.png) | ![Market](screenshots/market.png) | ![Modal](screenshots/modal.png) |
-
----
-
-## 🖼 Screenshots
-
 | Page              | Preview                                        |
 | ----------------- | ---------------------------------------------- |
 | 🏠 Home           | ![Home](screenshots/home.png)                  |
