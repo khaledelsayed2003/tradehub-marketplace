@@ -77,4 +77,12 @@ def logout_page():
     logout_user()
     flash("Logged out successfully! Come back anytime 🚀", "info")
     return redirect(url_for('home_page'))
-    
+
+@app.route("/delete-account")
+@login_required
+def delete_account():
+    user_to_delete = User.query.filter_by(username=current_user.username).first()
+    db.session.delete(user_to_delete)
+    db.session.commit()
+    flash('💀 Your account has been permanently deleted. Goodbye!', category='danger')
+    return redirect(url_for('home_page'))
