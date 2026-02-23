@@ -116,6 +116,22 @@ User sells item →  Item RELEASED back to market →  Anyone can buy it again
 
 ---
 
+## 🖼 Screenshots
+
+| Page              | Preview                                        |
+| ----------------- | ---------------------------------------------- |
+| 🏠 Home           | ![Home](screenshots/home.png)                  |
+| 📝 Register       | ![Register](screenshots/register.png)          |
+| 🔐 Login          | ![Login](screenshots/login.png)                |
+| 🛒 Market         | ![Market](screenshots/market.png)              |
+| 🔍 Item Details   | ![Details](screenshots/show_details_modal.png) |
+| 💸 Buy Item       | ![Buy Modal](screenshots/buy_modal.png)        |
+| 📦 Owned Items    | ![Owned Items](screenshots/owned_items.png)    |
+| 💵 Sell Item      | ![Sell Modal](screenshots/sell_modal.png)      |
+| ❌ Delete Account | ![Delete Modal](screenshots/delete_modal.png)  |
+
+---
+
 ## 📂 Project Structure
 
 ```
@@ -124,36 +140,47 @@ tradehub/
 ├── app/
 │   ├── static/
 │   │   └── css/
-│   │       └── style.css           # Custom styles, glassmorphism, gradients
+│   │       └── style.css                   # Custom styles, glassmorphism, gradients
 │   │
 │   ├── templates/
 │   │   ├── includes/
-│   │   │   ├── market_items_modals.html    # Buy modals for each item
+│   │   │   ├── market_items_modals.html    # Buy & details modals for each item
 │   │   │   └── owned_items_modal.html      # Sell modals for owned items
 │   │   │
-│   │   ├── base.html               # Base layout (navbar, flash messages)
-│   │   ├── home.html               # Landing page
-│   │   ├── login.html              # Login form
-│   │   ├── register.html           # Register form
-│   │   └── market.html             # Marketplace (buy/sell/owned items)
+│   │   ├── base.html                       # Base layout (navbar, flash messages)
+│   │   ├── home.html                       # Landing page
+│   │   ├── login.html                      # Login form
+│   │   ├── register.html                   # Register form
+│   │   └── market.html                     # Marketplace (buy/sell/owned items)
 │   │
-│   ├── __init__.py                 # App factory, DB init
-│   ├── forms.py                    # WTForms (Register, Login, Market)
-│   ├── models.py                   # User & Item models
-│   └── routes.py                   # All application routes
+│   ├── __init__.py                         # App factory, DB init
+│   ├── forms.py                            # WTForms (Register, Login, Market)
+│   ├── models.py                           # User & Item models
+│   └── routes.py                           # All application routes
 │
 ├── config/
-│   ├── .env                        # Secret keys (not committed)
-│   └── .env.example                # Template for environment setup
+│   ├── .env                                # Secret keys (not committed)
+│   └── .env.example                        # Template for environment setup
 │
 ├── instance/
-│   └── market.db                   # SQLite database (auto-generated)
+│   └── market.db                           # SQLite database (auto-generated)(not committed)
+│
+├── screenshots/                            # App screenshots for README
+│   ├── home.png
+│   ├── register.png
+│   ├── login.png
+│   ├── market.png
+│   ├── show_details_modal.png
+│   ├── buy_modal.png
+│   ├── owned_items.png
+│   ├── sell_modal.png
+│   └── delete_modal.png
 │
 ├── .gitignore
 ├── LICENSE
 ├── README.md
 ├── requirements.txt
-└── run.py                          # Entry point
+└── run.py                                  # Entry point
 ```
 
 ---
@@ -180,12 +207,12 @@ tradehub/
 ### 💸 Buying an Item
 
 ```
-1. User clicks "Buy"
+1. User clicks "Purchase"
 2. Modal pops up showing item name + price
 3. Form submits to POST /market
 4. Server checks: user.budget >= item.price
 5. If affordable:
-      item.owner = current_user
+      item.owner = current_user.id
       current_user.budget -= item.price
       db.session.commit()
 6. Item DISAPPEARS from the public market
@@ -206,22 +233,6 @@ tradehub/
 6. Budget INCREASES instantly
 ```
 
-### ❌ Deleting Account
-
-```python
-@app.route("/delete-account")
-@login_required
-def delete_account():
-    user = current_user
-    logout_user()              # End session FIRST
-    db.session.delete(user)    # Remove from database
-    db.session.commit()
-    flash("Account permanently deleted.", "danger")
-    return redirect(url_for("home_page"))
-```
-
-> ⚠️ Always call `logout_user()` **before** deleting, or Flask-Login will hold a dead session.
-
 ---
 
 ## 🚀 Installation
@@ -229,7 +240,7 @@ def delete_account():
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/tradehub.git
+git clone https://github.com/khaledelsayed2003/tradehub-marketplace.git
 cd tradehub
 ```
 
