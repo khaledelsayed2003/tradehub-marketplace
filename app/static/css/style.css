@@ -64,6 +64,92 @@ h1, h2, h3, h4 {
 }
 
 /* AUTHENTICATED NAVBAR UI*/
+/* USER DROPDOWN */
+.nav-user-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.nav-arrow {
+    color: #94a3b8;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.nav-user-dropdown:hover .nav-arrow {
+    color: #38bdf8;
+    transform: rotate(180deg);
+}
+
+/* dropdown menu */
+.nav-user-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    background: #020617;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 8px;
+    min-width: 180px;
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: 0.25s ease;
+}
+
+/* show on hover */
+.nav-user-dropdown:hover .nav-user-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* menu item */
+.nav-user-menu-item {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+    color: #cbd5e1;
+}
+
+/* danger item */
+.nav-user-menu-item.danger {
+    color: #ef4444;
+}
+
+.nav-user-menu-item.danger:hover {
+    background: rgba(239,68,68,0.15);
+    color: #ff6b6b;
+    box-shadow: 0 0 10px rgba(239,68,68,0.2);
+}
+
+/* DELETE CONFIRM BUTTON */
+.delete-confirm-btn {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.delete-confirm-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(239,68,68,0.6);
+    color: white;
+}
+
 /* welcome text */
 .nav-welcome {
     color: #cbd5e1;
