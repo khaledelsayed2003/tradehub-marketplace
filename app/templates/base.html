@@ -55,10 +55,21 @@
                 {% if current_user.is_authenticated %}
                     <div class="d-flex align-items-center gap-3">
 
-                        <!-- Welcome text -->
-                        <span class="nav-welcome">
-                            Welcome, <span class="nav-username">{{ current_user.username }}</span>
-                        </span>
+                        <!-- Welcome text with dropdown -->
+                        <div class="nav-user-dropdown">
+                            <span class="nav-welcome">
+                                Welcome, <span class="nav-username">{{ current_user.username }}</span>
+                            </span>
+                            <span class="nav-arrow">▾</span>
+
+                            <div class="nav-user-menu">
+                                <a href="#" class="nav-user-menu-item danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#DeleteAccountModal">
+                                    🗑️ Delete Account
+                                </a>
+                            </div>
+                        </div>
 
                         <!-- Budget pill -->
                         <span class="nav-budget">
