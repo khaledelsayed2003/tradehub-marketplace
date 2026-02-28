@@ -34,3 +34,8 @@ class PurchaseItemForm(FlaskForm):
     
 class SellItemForm(FlaskForm):
     submit = SubmitField(label='Confirm Sale') 
+
+
+class ForgotPasswordForm(FlaskForm):
+    email_address = StringField(label='Email', validators=[Email(), DataRequired()])
+    submit = SubmitField(label='Send Code')
