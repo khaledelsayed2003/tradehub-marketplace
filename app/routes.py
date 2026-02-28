@@ -1,7 +1,7 @@
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request
 from app.models import Item, User, load_user
-from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm
+from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, ForgotPasswordForm
 from flask_login import login_user, logout_user, login_required, current_user
 
 @app.route("/")
@@ -87,3 +87,8 @@ def delete_account():
     db.session.commit()
     flash('💀 Your account has been permanently deleted. Goodbye!', category='danger')
     return redirect(url_for('home_page'))
+
+@app.route("/forgot-password")
+def forgot_password():
+    form = ForgotPasswordForm()
+    return render_template('forgot_password.html', form=form)

@@ -1111,3 +1111,18 @@ body::before {
 .forgot-link:hover {
     color: #38bdf8;
 }
+
+/* Forgot password page */
+.forgot-icon {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.forgot-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 22px;
+    line-height: 1.6;
+}
