@@ -44,3 +44,9 @@ class ForgotPasswordForm(FlaskForm):
 class VerifyCodeForm(FlaskForm):
     code = StringField(label='Verification Code', validators=[DataRequired(), Length(min=6, max=6)])
     submit = SubmitField(label='Verify Code')
+    
+
+class ResetPasswordForm(FlaskForm):
+    new_password = PasswordField(label='New Password', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField(label='Confirm Password', validators=[DataRequired(), EqualTo('new_password')])
+    submit = SubmitField(label='Reset Password')
