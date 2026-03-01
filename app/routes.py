@@ -1,7 +1,7 @@
 from app import app, db, bcrypt, mail
 from flask import render_template, redirect, url_for, flash, request, session
 from app.models import Item, User, load_user
-from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, ForgotPasswordForm, VerifyCodeForm
+from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, ForgotPasswordForm, VerifyCodeForm, ResetPasswordForm
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
 import random
@@ -143,4 +143,10 @@ def verify_code():
             flash("Invalid code. Please check your email and try again.", category='danger')
             
     return render_template('verify_code.html', form=form)
+
+@app.route("/reset-password")
+def reset_password():
+    form = ResetPasswordForm()
+    return render_template('reset_password.html', form=form)
+
     
