@@ -1,8 +1,16 @@
-from app import app, db, bcrypt
-from flask import render_template, redirect, url_for, flash, request
+from app import app, db, bcrypt, mail
+from flask import render_template, redirect, url_for, flash, request, session
 from app.models import Item, User, load_user
 from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, ForgotPasswordForm
 from flask_login import login_user, logout_user, login_required, current_user
+from flask_mail import Message
+import random
+import string
+
+# helper function
+def generate_code():
+    return ''.join(random.choices(string.digits, k=6))
+
 
 @app.route("/")
 @app.route("/home")
@@ -88,7 +96,37 @@ def delete_account():
     flash('💀 Your account has been permanently deleted. Goodbye!', category='danger')
     return redirect(url_for('home_page'))
 
-@app.route("/forgot-password")
+@app.route("/forgot-password", methods=['GET', 'POST'])
 def forgot_password():
     form = ForgotPasswordForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email_address=form.email_address.data).first()
+        if user:
+            code = generate_code()
+            session['reset_code'] = code
+            session['reset_email'] = user.email_address
+
+            msg = Message(
+                subject="TradeHub — Password Reset Code",
+                sender=app.config['MAIL_USERNAME'],
+                recipients=[user.email_address]
+            )
+            msg.body = f"""
+Hi {user.username},
+
+Your TradeHub verification code is:
+
+{code}
+
+This code is for resetting your password.
+If you didn't request this, ignore this email.
+
+— TradeHub
+            """
+            mail.send(msg)
+            flash(f"A verification code has been sent to {user.email_address}", category='success')
+            return redirect(url_for('verify_code'))
+        else:
+            flash("No account found with that email.", category='danger')
+
     return render_template('forgot_password.html', form=form)
