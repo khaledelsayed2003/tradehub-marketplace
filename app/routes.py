@@ -150,12 +150,15 @@ def reset_password():
     if form.validate_on_submit():
         user = User.query.filter_by(email_address=session.get('reset_email')).first()
         if user:
-            user.password = form.new_password.data
-            db.session.commit()
-            session.pop('reset_code', None)
-            session.pop('reset_email', None)
-            flash("Your password has been reset successfully. Please log in.", category='success')
-            return redirect(url_for('login_page'))
+            if user.check_password_of_authenticated_user(form.new_password.data):
+                flash("New password must be different from your current password.", category='warning')
+            else:
+                user.password = form.new_password.data
+                db.session.commit()
+                session.pop('reset_code', None)
+                session.pop('reset_email', None)
+                flash("Your password has been reset successfully. Please log in.", category='success')
+                return redirect(url_for('login_page'))
         else:
             flash("Something went wrong. Please try again.", category='danger')
 
