@@ -18,11 +18,6 @@
             <div class="form-group mb-4">
                 {{ form.code.label(class="form-label") }}
                 {{ form.code(class="form-control code-input", placeholder="_ _ _ _ _ _", maxlength="6") }}
-                {% if form.code.errors %}
-                    {% for error in form.code.errors %}
-                        <span class="field-error">{{ error }}</span>
-                    {% endfor %}
-                {% endif %}
             </div>
 
             <div class="d-grid">
