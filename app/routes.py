@@ -144,9 +144,21 @@ def verify_code():
             
     return render_template('verify_code.html', form=form)
 
-@app.route("/reset-password")
+@app.route("/reset-password", methods=['GET', 'POST'])
 def reset_password():
     form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email_address=session.get('reset_email')).first()
+        if user:
+            user.password = form.new_password.data
+            db.session.commit()
+            session.pop('reset_code', None)
+            session.pop('reset_email', None)
+            flash("Your password has been reset successfully. Please log in.", category='success')
+            return redirect(url_for('login_page'))
+        else:
+            flash("Something went wrong. Please try again.", category='danger')
+
     return render_template('reset_password.html', form=form)
 
     
