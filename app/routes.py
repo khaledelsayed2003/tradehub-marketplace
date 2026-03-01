@@ -1,7 +1,7 @@
 from app import app, db, bcrypt, mail
 from flask import render_template, redirect, url_for, flash, request, session
 from app.models import Item, User, load_user
-from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, ForgotPasswordForm
+from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, ForgotPasswordForm, VerifyCodeForm
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
 import random
@@ -130,3 +130,9 @@ If you didn't request this, ignore this email.
             flash("No account found with that email.", category='danger')
 
     return render_template('forgot_password.html', form=form)
+
+@app.route("/verify-code", methods=['GET', 'POST'])
+def verify_code():
+    form = VerifyCodeForm()
+    return render_template('verify_code.html', form=form)
+    
