@@ -134,5 +134,13 @@ If you didn't request this, ignore this email.
 @app.route("/verify-code", methods=['GET', 'POST'])
 def verify_code():
     form = VerifyCodeForm()
+    if form.validate_on_submit():
+        code = session.get('reset_code')
+        if form.code.data == code:
+            flash("Code verified successfully! Please set your new password.", category='success')
+            return redirect(url_for('reset_password')) 
+        else:
+            flash("Invalid code. Please check your email and try again.", category='danger')
+            
     return render_template('verify_code.html', form=form)
     
