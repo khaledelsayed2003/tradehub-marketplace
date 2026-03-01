@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Verify Code | TradeHub
+{% endblock %}
+
+{% block content %}
+<div class="login-wrapper">
+    <div class="login-card shadow-lg">
+
+        <div class="verify-icon">📩</div>
+        <h2 class="text-center mb-2">Check Your Email</h2>
+        <p class="verify-subtitle">We sent a 6-digit code to <strong>{{ session.get('reset_email') }}</strong></p>
+
+        <form method="POST" action="{{ url_for('verify_code') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group mb-4">
+                {{ form.code.label(class="form-label") }}
+                {{ form.code(class="form-control code-input", placeholder="_ _ _ _ _ _", maxlength="6") }}
+                {% if form.code.errors %}
+                    {% for error in form.code.errors %}
+                        <span class="field-error">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="d-grid">
+                {{ form.submit(class="btn btn-primary btn-lg") }}
+            </div>
+        </form>
+
+        <p class="auth-switch-text">
+            Wrong email?
+            <a href="{{ url_for('forgot_password') }}">Go back</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
