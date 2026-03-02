@@ -63,6 +63,10 @@
                             <span class="nav-arrow">▾</span>
 
                             <div class="nav-user-menu">
+                                <!-- Change Password -->
+                                <a href="{{ url_for('reset_password') }}" class="nav-user-menu-item password-item">
+                                    🔑 Change Password
+                                </a>
                                 <a href="#" class="nav-user-menu-item danger"
                                 data-bs-toggle="modal"
                                 data-bs-target="#DeleteAccountModal">
