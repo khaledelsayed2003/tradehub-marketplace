@@ -168,4 +168,16 @@ def reset_password():
 @login_required
 def change_password():
     form = ChangePasswordForm()
+    if form.validate_on_submit():
+        if current_user.check_password_of_authenticated_user(form.current_password.data):
+            if not current_user.check_password_of_authenticated_user(form.new_password.data):
+                current_user.password = form.new_password.data
+                db.session.commit()
+                flash("Your password has been changed successfully.", category='success')
+                return redirect(url_for('market_page'))
+            else:
+                flash("😕 Your new password must be different from the current one. Try again!", "warning")
+        else:
+            flash("Oops!😕 Current password is incorrect.", "danger")    
+                
     return render_template('change_password.html', form=form)
