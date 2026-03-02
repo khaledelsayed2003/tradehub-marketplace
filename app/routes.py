@@ -157,8 +157,12 @@ def reset_password():
                 db.session.commit()
                 session.pop('reset_code', None)
                 session.pop('reset_email', None)
-                flash("Your password has been reset successfully. Please log in.", category='success')
-                return redirect(url_for('login_page'))
+                if not current_user.is_authenticated:    
+                    flash("Your password has been reset successfully. Please log in.", category='success')
+                    return redirect(url_for('login_page'))
+                else:
+                    flash("Your password has been reset successfully.", category='success')
+                    return redirect(url_for('market_page'))
         else:
             flash("Something went wrong. Please try again.", category='danger')
 
@@ -178,6 +182,6 @@ def change_password():
             else:
                 flash("😕 Your new password must be different from the current one. Try again!", "warning")
         else:
-            flash("Oops!😕 Current password is incorrect.", "danger")    
+            flash("Oops!😕 Current password is incorrect. Click 'Forgot Password?' to reset via email.", "danger")    
                 
     return render_template('change_password.html', form=form)
