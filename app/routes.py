@@ -168,4 +168,4 @@ def reset_password():
 @login_required
 def change_password():
     form = ChangePasswordForm()
-    return render_template('reset_password.html', form=form)
+    return render_template('change_password.html', form=form)
