@@ -1,7 +1,7 @@
 from app import app, db, bcrypt, mail
 from flask import render_template, redirect, url_for, flash, request, session
 from app.models import Item, User, load_user
-from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, ForgotPasswordForm, VerifyCodeForm, ResetPasswordForm
+from app.forms import RegisterForm, LoginForm, PurchaseItemForm, SellItemForm, ForgotPasswordForm, VerifyCodeForm, ResetPasswordForm, ChangePasswordForm
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
 import random
@@ -164,4 +164,8 @@ def reset_password():
 
     return render_template('reset_password.html', form=form)
 
-    
+@app.route("/change-password", methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    return render_template('reset_password.html', form=form)
