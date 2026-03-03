@@ -124,12 +124,12 @@ User sells item →  Item RELEASED back to market →  Anyone can buy it again
 | 💸 Buy Item         | ![Buy Modal](screenshots/buy_modal.png)               |
 | 📦 Owned Items      | ![Owned Items](screenshots/owned_items.png)           |
 | 💵 Sell Item        | ![Sell Modal](screenshots/sell_modal.png)             |
-| ❌ Delete Account   | ![Delete Modal](screenshots/delete_modal.png)         |
 | ⚙️ Account Settings | ![Account Settings](screenshots/account_settings.png) |
+| 🔒 Change Password  | ![Change Password](screenshots/change_password.png)   |
+| ❌ Delete Account   | ![Delete Modal](screenshots/delete_modal.png)         |
 | 🔑 Forgot Password  | ![Forgot Password](screenshots/forgot_password.png)   |
 | 📩 Verify Code      | ![Verify Code](screenshots/verify_code.png)           |
 | 🛡 Reset Password   | ![Reset Password](screenshots/reset_password.png)     |
-| 🔒 Change Password  | ![Change Password](screenshots/change_password.png)   |
 
 ---
 
