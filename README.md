@@ -26,6 +26,7 @@
 ![Flask--Login](https://img.shields.io/badge/Flask--Login-0.6.3-FF7043?style=for-the-badge&logo=flask&logoColor=white)
 ![Flask--Bcrypt](https://img.shields.io/badge/Flask--Bcrypt-1.0.1-4CAF50?style=for-the-badge&logo=flask&logoColor=white)
 ![Flask--WTF](https://img.shields.io/badge/Flask--WTF-1.2.2-00BCD4?style=for-the-badge&logo=flask&logoColor=white)
+![Flask--Mail](https://img.shields.io/badge/Flask--Mail-0.10.0-EA4335?style=for-the-badge&logo=gmail&logoColor=white)
 
 <!-- Meta -->
 
@@ -56,6 +57,9 @@
 - ✅ Secure Login & Logout
 - ✅ Session Management via Flask-Login
 - ✅ Password hashing
+- ✅ Forgot password via email verification
+- ✅ 6-digit code sent to registered email
+- ✅ Change password from navbar
 
 </td>
 <td width="50%">
@@ -88,6 +92,8 @@
 - ✅ All owned items returned to market on deletion
 - ✅ Instant session termination
 - ✅ Flash notification system
+- ✅ Change password with current password verification
+- ✅ Forgot password fallback from change password page
 
 </td>
 </tr>
@@ -108,17 +114,22 @@ User sells item →  Item RELEASED back to market →  Anyone can buy it again
 
 ## 🖼 Screenshots
 
-| Page              | Preview                                        |
-| ----------------- | ---------------------------------------------- |
-| 🏠 Home           | ![Home](screenshots/home.png)                  |
-| 📝 Register       | ![Register](screenshots/register.png)          |
-| 🔐 Login          | ![Login](screenshots/login.png)                |
-| 🛒 Market         | ![Market](screenshots/market.png)              |
-| 🔍 Item Details   | ![Details](screenshots/show_details_modal.png) |
-| 💸 Buy Item       | ![Buy Modal](screenshots/buy_modal.png)        |
-| 📦 Owned Items    | ![Owned Items](screenshots/owned_items.png)    |
-| 💵 Sell Item      | ![Sell Modal](screenshots/sell_modal.png)      |
-| ❌ Delete Account | ![Delete Modal](screenshots/delete_modal.png)  |
+| Page                | Preview                                               |
+| ------------------- | ----------------------------------------------------- |
+| 🏠 Home             | ![Home](screenshots/home.png)                         |
+| 📝 Register         | ![Register](screenshots/register.png)                 |
+| 🔐 Login            | ![Login](screenshots/login.png)                       |
+| 🛒 Market           | ![Market](screenshots/market.png)                     |
+| 🔍 Item Details     | ![Details](screenshots/show_details_modal.png)        |
+| 💸 Buy Item         | ![Buy Modal](screenshots/buy_modal.png)               |
+| 📦 Owned Items      | ![Owned Items](screenshots/owned_items.png)           |
+| 💵 Sell Item        | ![Sell Modal](screenshots/sell_modal.png)             |
+| ❌ Delete Account   | ![Delete Modal](screenshots/delete_modal.png)         |
+| ⚙️ Account Settings | ![Account Settings](screenshots/account_settings.png) |
+| 🔑 Forgot Password  | ![Forgot Password](screenshots/forgot_password.png)   |
+| 📩 Verify Code      | ![Verify Code](screenshots/verify_code.png)           |
+| 🛡 Reset Password   | ![Reset Password](screenshots/reset_password.png)     |
+| 🔒 Change Password  | ![Change Password](screenshots/change_password.png)   |
 
 ---
 
@@ -141,10 +152,14 @@ tradehub/
 │   │   ├── home.html                       # Landing page
 │   │   ├── login.html                      # Login form
 │   │   ├── register.html                   # Register form
-│   │   └── market.html                     # Marketplace (buy/sell/owned items)
+│   │   ├── market.html                     # Marketplace (buy/sell/owned items)
+│   │   ├── forgot_password.html            # Step 1 — enter email
+│   │   ├── verify_code.html                # Step 2 — enter 6-digit code
+│   │   ├── reset_password.html             # Step 3 — set new password
+│   │   └── change_password.html            # Change password while logged in
 │   │
 │   ├── __init__.py                         # App factory, DB init
-│   ├── forms.py                            # WTForms (Register, Login, Market)
+│   ├── forms.py                            # WTForms (RegisterForm, LoginForm, PurchaseItemForm, etc..)
 │   ├── models.py                           # User & Item models
 │   └── routes.py                           # All application routes
 │
@@ -155,16 +170,21 @@ tradehub/
 ├── instance/
 │   └── market.db                           # SQLite database (auto-generated)(not committed)
 │
-├── screenshots/                            # App screenshots for README
+├── screenshots/
 │   ├── home.png
 │   ├── register.png
 │   ├── login.png
 │   ├── market.png
+│   ├── account_settings.png            # Navbar dropdown with Change Password & Delete Account
 │   ├── show_details_modal.png
 │   ├── buy_modal.png
 │   ├── owned_items.png
 │   ├── sell_modal.png
-│   └── delete_modal.png
+│   ├── delete_modal.png
+│   ├── change_password.png
+│   ├── forgot_password.png
+│   ├── verify_code.png
+│   └── reset_password.png
 │
 ├── .gitignore
 ├── LICENSE
@@ -184,6 +204,7 @@ tradehub/
 | **ORM**       | Flask-SQLAlchemy + SQLAlchemy          | 3.1.1 + 2.0.46 |
 | **Auth**      | Flask-Login + Flask-Bcrypt             | 0.6.3 + 1.0.1  |
 | **Forms**     | Flask-WTF + WTForms                    | 1.2.2 + 3.2.1  |
+| **Email**     | Flask-Mail + Gmail SMTP                | 0.10.0         |
 | **Config**    | python-dotenv                          | 1.2.1          |
 | **Database**  | SQLite                                 | —              |
 | **Frontend**  | Bootstrap 5 + Custom CSS               | 5.x            |
@@ -221,6 +242,30 @@ tradehub/
       db.session.commit()
 5. Item REAPPEARS on public market
 6. Budget INCREASES instantly
+```
+
+### 🔑 Forgot Password Flow
+
+```
+1. User clicks "Forgot password?" on login page
+2. Enters registered email address
+3. Flask generates a 6-digit code and sends it via Flask-Mail
+4. User enters the code on verify page
+5. Flask checks code against session
+6. If correct → user sets new password
+7. Password hashed and updated in database
+8. Session cleared, redirected to login
+```
+
+### 🔒 Change Password Flow
+
+```
+1. Logged-in user opens navbar dropdown
+2. Clicks "Change Password"
+3. Enters current password + new password + confirmation
+4. Flask verifies current password against database hash
+5. If wrong → link to forgot password flow
+6. If correct → new password hashed and saved
 ```
 
 ---
@@ -272,13 +317,15 @@ python run.py
 
 ## 🧪 Try It Out
 
-| Action                 | What Happens                               |
-| ---------------------- | ------------------------------------------ |
-| Register a new account | Get $1,000 starting budget                 |
-| Buy an item            | It's removed from market, budget drops     |
-| Check market           | That item is GONE for everyone             |
-| Sell it back           | Item returns to market, you get money back |
-| Delete account         | Everything wiped, session ends             |
+| Action                 | What Happens                                  |
+| ---------------------- | --------------------------------------------- |
+| Register a new account | Get $1,000 starting budget                    |
+| Buy an item            | It's removed from market, budget drops        |
+| Check market           | That item is GONE for everyone                |
+| Sell it back           | Item returns to market, you get money back    |
+| Delete account         | Everything wiped, session ends                |
+| Forgot password        | Receive 6-digit code by email, reset password |
+| Change password        | Update password directly from navbar dropdown |
 
 ---
 
